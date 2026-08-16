@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>Send a Message</h1>
+      <p>Enter your information below.</p>
+
+      <form id="form">
+        <input
+          type="text"
+          id="text1"
+          placeholder="First message"
+          maxlength="500"
+          required
+        >
+
+        <input
+          type="text"
+          id="text2"
+          placeholder="Second message"
+          maxlength="500"
+          required
+        >
+
+        <button type="submit">Send</button>
+
+        <p id="status"></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("form");
+    const status = document.getElementById("status");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      status.textContent = "Sending...";
+      status.className = "";
+
+      const text1 = document.getElementById("text1").value;
+      const text2 = document.getElementById("text2").value;
+
+      try {
+        const response = await fetch("YOUR_SERVERLESS_ENDPOINT", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            text1,
+            text2
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error("Request failed");
+        }
+
+        form.reset();
+        status.textContent = "Message sent!";
+        status.className = "success";
+
+      } catch (error) {
+        status.textContent = "Something went wrong.";
+        status.className = "error";
+      }
+    });
+  </script>
+</body>
+</html>
